@@ -18,7 +18,12 @@
         <Directory Id="Library" Name="Library">
           <Directory Id="Developer" Name="Developer">
             <Directory Id="Toolchains" Name="Toolchains">
-              <Directory Id="xctoolchain" Name="unknown-Asserts-development.xctoolchain">
+              <?if $(var.ProductVersion) = "0.0.0"?>
+              <?define ToolchainName = "unknown-Asserts-development.xctoolchain"?>
+              <?else?>
+              <?define ToolchainName = "unknown-Asserts-$(var.ProductVersion).xctoolchain"?>
+              <?endif?>
+              <Directory Id="xctoolchain" Name="$(var.ToolchainName)">
                 <Directory Id="_usr" Name="usr">
                   <Directory Id="_usr_bin" Name="bin">
                   </Directory>

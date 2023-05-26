@@ -13,8 +13,12 @@
     <!-- Directory Structure -->
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="INSTALLDIR" Name="Swift">
-        <!-- TODO(compnerd) use $(var.ProductVersion) -->
-        <Directory Id="_" Name="runtime-development">
+        <?if $(var.ProductVersion) = "0.0.0"?>
+        <?define RuntimeName = "runtime-development"?>
+        <?else?>
+        <?define RuntimeName = "runtime-$(var.ProductVersion)"?>
+        <?endif?>
+        <Directory Id="_" Name="$(var.RuntimeName)">
           <Directory Id="_usr" Name="usr">
             <Directory Id="_usr_bin" Name="bin">
             </Directory>
@@ -90,9 +94,9 @@
     </ComponentGroup>
 
     <Component Id="EnvironmentVariables" Directory="INSTALLDIR" Guid="f249625e-aacd-4b17-a464-8f8df05ba5f3">
-      <Environment Id="Path" Action="set" Name="Path" Part="last" Permanent="no" System="yes" Value="[INSTALLDIR]runtime-development\usr\bin" />
+      <Environment Id="Path" Action="set" Name="Path" Part="last" Permanent="no" System="yes" Value="[INSTALLDIR]$(var.RuntimeName)\usr\bin" />
     </Component>
-    
+
     <!-- Feature -->
     <Feature Id="WinX64SwiftRuntime" AllowAbsent="no" AllowAdvertise="yes" ConfigurableDirectory="INSTALLDIR" Description="Swift Windows Runtime (AMD64)" Level="1" Title="Swift Windows Runtime (AMD64)">
       <ComponentGroupRef Id="SwiftRuntime" />

@@ -13,7 +13,11 @@
     <!-- Directory Structure -->
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="INSTALLDIR" Name="Swift">
-        <!-- TODO(compnerd) use $(var.ProductVersion) -->
+        <?if $(var.ProductVersion) = "0.0.0"?>
+        <?define RuntimeName = "runtime-development"?>
+        <?else?>
+        <?define RuntimeName = "runtime-$(var.ProductVersion)"?>
+        <?endif?>
         <Directory Id="_" Name="runtime-development">
           <Directory Id="_usr" Name="usr">
             <Directory Id="_usr_bin" Name="bin">
@@ -90,7 +94,7 @@
     </ComponentGroup>
 
     <Component Id="EnvironmentVariables" Directory="INSTALLDIR" Guid="8681d813-eb32-46f9-8b1c-f622b38b5eaf">
-      <Environment Id="Path" Action="set" Name="Path" Part="last" Permanent="no" System="yes" Value="[INSTALLDIR]runtime-development\usr\bin" />
+      <Environment Id="Path" Action="set" Name="Path" Part="last" Permanent="no" System="yes" Value="[INSTALLDIR]$(var.RuntimeName)\usr\bin" />
     </Component>
 
     <!-- Feature -->
