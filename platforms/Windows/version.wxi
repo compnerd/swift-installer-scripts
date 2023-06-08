@@ -1,12 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <Include>
-<?if $(var.ProductVersion) = "0.0.0"?>
-<?define RuntimeName = "runtime-development"?>
-<?else?>
-<?define RuntimeName = "runtime-$(var.ProductVersion)"?>
-<?endif?>
-
 <?if $(var.ProductArchitecture) = "amd64"?>
   <?define ProcessorArchitecture = "AMD64"?>
 <?elseif $(var.ProductArchitecture) = "arm64"?>
