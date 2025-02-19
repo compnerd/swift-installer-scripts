@@ -1,6 +1,6 @@
 <Project Sdk="WixToolset.Sdk/4.0.5">
   <PropertyGroup>
-    <OutputName>sdk.windows.$(ProductArchitecture)</OutputName>
+    <OutputName>sdk.$(ProductPlatform).$(ProductArchitecture)</OutputName>
     <Platform>x86</Platform>
 
     <SwiftShimsPath>$(SDK_ROOT)\usr\lib\swift\shims</SwiftShimsPath>
@@ -23,17 +23,17 @@
   -->
   <ItemGroup Condition=" '$(ProductArchitecture)' == 'x86' ">
     <ProjectReference Include="..\..\rtl\msm\rtlmsm.wixproj" Properties="ProductArchitecture=x86;Platform=x86" BindName="rtlmsm" />
-    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=x86;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductArchitecture)\" />
+    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=x86;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductPlatform)_$(ProductArchitecture)\" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(ProductArchitecture)' == 'amd64' ">
     <ProjectReference Include="..\..\rtl\msm\rtlmsm.wixproj" Properties="ProductArchitecture=amd64;Platform=x64" BindName="rtlmsm" />
-    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=amd64;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductArchitecture)\" />
+    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=amd64;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductPlatform)_$(ProductArchitecture)\" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(ProductArchitecture)' == 'arm64' ">
     <ProjectReference Include="..\..\rtl\msm\rtlmsm.wixproj" Properties="ProductArchitecture=arm64;Platform=arm64" BindName="rtlmsm" />
-    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=arm64;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductArchitecture)\" />
+    <ProjectReference Include="..\..\shared\shared.wixproj" Properties="ProductArchitecture=arm64;Platform=x86;IntermediateOutputPath=$(BaseIntermediateOutputPath)x86_$(ProductArchitecture)\$(Configuration)\;OutputPath=$(BaseOutputPath)$(Configuration)\x86_$(ProductPlatform)_$(ProductArchitecture)\" />
   </ItemGroup>
 
   <ItemGroup>
