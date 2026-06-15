@@ -1,7 +1,10 @@
 <Project Sdk="WixToolset.Sdk/7.0.0">
   <PropertyGroup>
-    <OutputName>rtl.dynamic.$(ProductArchitecture)</OutputName>
+    <RuntimeAssemblyKind Condition=" '$(RuntimeAssemblyKind)' == '' ">shared</RuntimeAssemblyKind>
+    <OutputName>rtl.dynamic.$(RuntimeAssemblyKind).$(ProductArchitecture)</OutputName>
     <OutputType>Library</OutputType>
     <BindFiles>true</BindFiles>
+    <RuntimeLibraryConsumer Condition=" '$(RuntimeLibraryConsumer)' == '' ">standalone</RuntimeLibraryConsumer>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(RuntimeLibraryConsumer)\$(ProductArchitecture)\$(RuntimeAssemblyKind)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
 </Project>

@@ -8,6 +8,13 @@
     <ProjectReference Include="$(MSBuildThisFileDirectory)shared\shared.wixproj" />
   </ItemGroup>
 
+  <PropertyGroup Condition=" '$(RuntimeAssemblyKind)' != '' ">
+    <DefineConstants>
+      $(DefineConstants);
+      RuntimeAssemblyKind=$(RuntimeAssemblyKind);
+    </DefineConstants>
+  </PropertyGroup>
+
   <Import Project="RuntimeLibraries.targets" Condition="'$(MSBuildProjectExtension)' == '.wixproj'" />
 
   <ItemGroup>

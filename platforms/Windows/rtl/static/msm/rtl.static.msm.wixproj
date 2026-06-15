@@ -1,6 +1,8 @@
 <Project Sdk="WixToolset.Sdk/7.0.0">
   <PropertyGroup>
+    <RuntimeAssemblyKind Condition=" '$(RuntimeAssemblyKind)' == '' ">private</RuntimeAssemblyKind>
     <OutputType>Module</OutputType>
-    <OutputName>rtl.static.shared.$(ProductArchitecture)</OutputName>
+    <OutputName>rtl.static.$(RuntimeAssemblyKind).$(ProductArchitecture)</OutputName>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(ProductArchitecture)\$(RuntimeAssemblyKind)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
 </Project>
