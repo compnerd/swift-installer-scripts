@@ -1,7 +1,7 @@
 <Project Sdk="WixToolset.Sdk/7.0.0">
   <PropertyGroup>
     <OutputType>Module</OutputType>
-    <OutputName>rtl.shared.$(ProductArchitecture)</OutputName>
+    <OutputName>rtl.dynamic.$(ProductArchitecture)</OutputName>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(ProductArchitecture)' == 'amd64' ">
